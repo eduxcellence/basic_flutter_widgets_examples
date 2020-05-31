@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toast/toast.dart';
 
 import '2_row_widget.dart';
 
@@ -24,7 +25,14 @@ class ListViewState extends State<ListViewDemo> {
       child: ListView.builder(
         itemCount: 5,
         itemBuilder: (context, index) {
-          return Row_Widget_Demo();
+          return Dismissible(
+              child: ListTile(
+                  onTap: () {
+                    Toast.show("Pressed $index", context,
+                        duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+                  },
+                  title: Row_Widget_Demo()),
+              key: Key(null));
         },
       ),
     ));
